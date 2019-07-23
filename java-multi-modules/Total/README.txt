@@ -1,0 +1,1 @@
+聚合的示例，Total总聚合Group1，Hello，HelloFriend
