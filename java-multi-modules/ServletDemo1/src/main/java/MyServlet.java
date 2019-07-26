@@ -23,8 +23,9 @@ public class MyServlet extends HttpServlet {
         else{//用户名不为空则跳转Shop页面
             HttpSession session = request.getSession();
             session.setAttribute("user",name);
-            RequestDispatcher ch=request.getRequestDispatcher("Shop.jsp");
-            ch.forward(request,response);
+            response.sendRedirect("Shop.jsp");     //请求重定向
+//            RequestDispatcher ch=request.getRequestDispatcher("Shop.jsp");    原先请求转发
+//            ch.forward(request,response);
         }
     }
 }

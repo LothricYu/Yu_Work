@@ -3,6 +3,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -19,14 +20,14 @@ public class ShopList extends HttpServlet {
         String so= request.getParameter("goods");
         if(so!=""){
             places.add(so);
-            RequestDispatcher ch=request.getRequestDispatcher("Shop.jsp");
-            ch.forward(request,response);
+            response.sendRedirect("Shop.jsp");
         }
         else{
             response.getWriter().write("<script>alert('商品名为空！');window.location.href='Shop.jsp';</script>");
         }
     }
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+
         request.setAttribute("list",places);
         RequestDispatcher qr=request.getRequestDispatcher("Shopdetail.jsp");
         qr.forward(request,response);
