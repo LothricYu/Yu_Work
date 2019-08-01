@@ -1,0 +1,78 @@
+1. 展示当前Mysql 里面有哪些数据库
+Show database
+2. 创建数据库  internship
+Create database `internship`
+3. 使用数据库  internship
+Use `internship`
+4. 创建 用户表 ,表名,列名和数据类型选用自认为最合适的
+    用户表有字段 
+       主键id,用户名,密码,用户邮箱,用户手机号,其中主键是自增的
+CREATE TABLE `user` (
+  `id` INT(12) NOT NULL,
+  `username` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(45) NOT NULL,
+  `telnumber` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`));
+5. 创建 留言表
+       主键id(自增的),留言标题,留言详细内容,留言创建时间,留言编辑时间,留言用户id
+CREATE TABLE `message` (
+  `m_id` INT(11) NOT NULL,
+  `m_title` VARCHAR(45) NULL,
+  `m_detail` VARCHAR(45) NULL,
+  `starttime` DATETIME(6) NULL,
+  `edittime` DATETIME(6) NULL,
+  `userid` INT(11) NULL,
+  PRIMARY KEY (`m_id`));
+6. 创建外键,留言表和用户表之间的
+ALTER TABLE `message` 
+ADD INDEX `userid_idx` (`userid` ASC) VISIBLE;
+ALTER TABLE `message` 
+ADD CONSTRAINT `userid`
+  FOREIGN KEY (`userid`)
+  REFERENCES `user` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+7. 创建2个用户  
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `telnumber`) VALUES ('1', '游', '123456', '1244497807@qq.com', '17759009355');
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `telnumber`) VALUES ('2', '林', '987654', '1620328873@qq.com', '13015959351');     
+8. 每个用户创建3条留言
+INSERT INTO `message` (`m_id`, `m_title`, `m_detail`, `starttime`, `edittime`, `userid`) VALUES ('1', 'title1', 'Hello', '2019-07-29 10:45', '2019-07-29 10:45', '1');
+INSERT INTO `message` (`m_id`, `m_title`, `m_detail`, `starttime`, `edittime`, `userid`) VALUES ('2', 'title2', 'my', '2019-07-29 10:45', '2019-07-29 10:45', '1');
+INSERT INTO `message` (`m_id`, `m_title`, `m_detail`, `starttime`, `edittime`, `userid`) VALUES ('3', 'title3', 'friend', '2019-07-29 10:45', '2019-07-29 10:45', '1');
+INSERT INTO `message` (`m_id`, `m_title`, `m_detail`, `starttime`, `edittime`, `userid`) VALUES ('4', 'title1', 'Hi', '2019-07-29 10:46', '2019-07-29 10:46', '2');
+INSERT INTO `message` (`m_id`, `m_title`, `m_detail`, `starttime`, `edittime`, `userid`) VALUES ('5', 'title2', 'your', '2019-07-29 10:46', '2019-07-29 10:46', '2');
+INSERT INTO `message` (`m_id`, `m_title`, `m_detail`, `starttime`, `edittime`, `userid`) VALUES ('6', 'title3', 'name', '2019-07-29 10:46', '2019-07-29 10:46', '2');
+9.删除第二个用户以及他的所有留言
+DELETE FROM `message`
+WHERE (`userid` = '2');
+DELETE FROM `user`
+WHERE (‘id` = '2');
+10.创建1个新用户,并给他创建2个留言
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `telnumber`) VALUES ('2', '李', '777777', '7777777777@qq.com', '12345678909');
+INSERT INTO `message` (`m_id`, `m_title`, `m_detail`, `starttime`, `edittime`, `userid`) VALUES ('4', 'title4', 'test', '2019-07-29 11:11:00.000000', '2019-07-29 11:11', '2');
+INSERT INTO `message` (`m_id`, `m_title`, `m_detail`, `starttime`, `edittime`, `userid`) VALUES ('5', 'title5', 'no', '2019-07-29 11:11:00.000000', '2019-07-29 11:11', '2');
+11.编辑第一个用户的 按照 创建时间排序(第一条是时间最新的)的 第二条留言,留言内容结尾加上 "update",不准用留言id直接关联
+update `message` set `m_detail`=concat(`m_detail`,’update’)
+where `starttime` =(
+select * from(
+select min(starttime) from `message` where `starttime` not in (select min(starttime) from `message`)
+)as second
+)
+11.显示第一个用户的所有留言 ,注意显示结果包括用户名和手机号
+select `m_id`,`m_title`,`m_detail`,`starttime`,`edittime`,`userid`,`username`,`telnumber` 
+from `message`,`user`
+where `userid`='1' and `userid`=`id`;
+12. 显示每个用户的留言数目,结果包括用户邮箱
+select count(*),`userid`,`email`from `message`,`user`
+where `userid`=`id`
+group by `userid`;
+13. 显示每个用户的最新的一条留言
+select `userid`,max(`starttime`)from `message` 
+group by `userid`;
+14. 创建数据库  internship2
+Create database `internship2`;
+15.导出  internship 的数据 并导入到  internship2 数据库,表结构维持不变
+mysqldump -u[用户名] -p[密码] `internship` > C:\ data.sql
+use `internship2`;
+source C:\ data.sql;
