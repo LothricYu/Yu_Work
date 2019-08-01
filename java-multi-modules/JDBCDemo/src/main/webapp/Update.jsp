@@ -20,7 +20,7 @@
     session.setAttribute("up_id",up_id);
 %>
 <center>
-<form action="Updateuser" method="post">
+<form action="Update" method="post">
     <h1><label>请输入留言信息：</label></h1>
     <label>留言标题：</label><br/>
     <input type="text" name="up_title"/><br/>

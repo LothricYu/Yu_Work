@@ -114,7 +114,7 @@
     <form action="Update.jsp">
         <label>请输入要编辑的留言ID</label>
         <input type="text" name="up_id" >
-        <input type="submit"name="edit"class="btn_grey"value="编辑留言">
+        <input type="submit"name="edit"class="btn_grey"value="编辑留言" >
     </form>
     <table border="1" align="center" width="70%">
         <tr>

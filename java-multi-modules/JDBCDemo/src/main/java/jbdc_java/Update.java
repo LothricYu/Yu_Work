@@ -16,6 +16,8 @@ public class Update extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         HttpSession session=request.getSession();
+        String name= (String) session.getAttribute("user");
+        System.out.println(name);
         int up_id= (int) session.getAttribute("up_id");
         String m_title=request.getParameter("up_title");
         String m_detail=request.getParameter("up_detail");
@@ -34,11 +36,12 @@ public class Update extends HttpServlet {
             ps.executeUpdate();
             ps.close();
             con.close();
+            session.setAttribute("user",name);
+            response.sendRedirect("Show.jsp");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        response.sendRedirect("Show.jsp");
     }
 }

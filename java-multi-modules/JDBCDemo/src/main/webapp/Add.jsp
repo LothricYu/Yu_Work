@@ -14,6 +14,10 @@
 
 </head>
 
+<%
+    session=request.getSession();
+    String username= (String) session.getAttribute("user");
+%>>
 <body bgcolor="#f0f8ff">
 <center>
 <form action="AddServlet" method="post">

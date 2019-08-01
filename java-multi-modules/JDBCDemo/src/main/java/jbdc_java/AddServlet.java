@@ -46,9 +46,9 @@ public class AddServlet extends HttpServlet {
             int result = ps.executeUpdate();
             ps.close();
             con.close();
+            response.sendRedirect("Show.jsp");
         }catch(Exception ignored){
         }
-        response.sendRedirect("Show.jsp");
 
     }
 }
