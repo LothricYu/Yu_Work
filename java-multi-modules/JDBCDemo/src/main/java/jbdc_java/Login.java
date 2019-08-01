@@ -20,6 +20,9 @@ public class Login extends HttpServlet {
         if(name.equals("")){
             response.getWriter().write("<script>alert('用户名为空！');window.location.href='Deng.jsp';</script>");
         }
+        if(!(name.equals("you")||name.equals("robot1")||name.equals("robot2"))){
+            response.getWriter().write("<script>alert('登录失败！');window.location.href='Deng.jsp';</script>");
+        }
         else{
             HttpSession session = request.getSession();
             session.setAttribute("user",name);

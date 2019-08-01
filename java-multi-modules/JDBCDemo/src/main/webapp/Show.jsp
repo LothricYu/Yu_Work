@@ -106,16 +106,16 @@
     <form action="">
         <input type="button" name="add" value="新建留言" onclick="window.location.href='Add.jsp'">
     </form>
-    <form action="Delete" method="post">
-        <label>请输入要删除的留言ID</label>
-        <input type="text" name="d_id" >
-        <input type="submit"name="delete"class="btn_grey"value="删除留言">
-    </form>
-    <form action="Update.jsp">
-        <label>请输入要编辑的留言ID</label>
-        <input type="text" name="up_id" >
-        <input type="submit"name="edit"class="btn_grey"value="编辑留言" >
-    </form>
+<%--    <form action="Delete" method="post">--%>
+<%--        <label>请输入要删除的留言ID</label>--%>
+<%--        <input type="text" name="d_id" >--%>
+<%--        <input type="submit"name="delete"class="btn_grey"value="删除留言">--%>
+<%--    </form>--%>
+<%--    <form action="Update.jsp">--%>
+<%--        <label>请输入要编辑的留言ID</label>--%>
+<%--        <input type="text" name="up_id" >--%>
+<%--        <input type="submit"name="edit"class="btn_grey"value="编辑留言" >--%>
+<%--    </form>--%>
     <table border="1" align="center" width="70%">
         <tr>
             <td>留言ID</td>
@@ -125,6 +125,7 @@
             <td>编辑时间</td>
             <td>留言者ID</td>
             <td>留言者姓名</td>
+            <td>操作</td>
         </tr>
 
         <c:forEach items="${list}" var="list">
@@ -136,6 +137,9 @@
                 <td>${list.edittime }</td>
                 <td>${list.userid }</td>
                 <td>${list.username }</td>
+                <td><a href="Update.jsp?up_id=${list.m_id}">编辑留言</a><br>
+                <a href="Delete?d_id=${list.m_id}">删除留言</a>
+                </td>
             </tr>
         </c:forEach>
     </table>
