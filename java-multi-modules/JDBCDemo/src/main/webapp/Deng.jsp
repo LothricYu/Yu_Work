@@ -18,6 +18,7 @@
 <form action="Login" method="post" >
     <table>
         <tr><td>用户名</td><td><input type="text"name="user"maxlength="20"></td></tr>
+        <tr><td>密码</td><td><input type="text"name="password"maxlength="20"></td></tr>
         <tr align="center">
             <td colspan="2">
                 <input type="submit"value="登 录">

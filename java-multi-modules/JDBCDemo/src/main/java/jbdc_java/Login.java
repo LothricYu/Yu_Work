@@ -17,10 +17,14 @@ public class Login extends HttpServlet {
         response.setContentType("text/html;charset=utf-8");
         response.setCharacterEncoding("utf-8");
         String name=request.getParameter("user");
+        String password=request.getParameter("password");
+        User user=new User();
+        User n=user.login(name,password);
+
         if(name.equals("")){
             response.getWriter().write("<script>alert('用户名为空！');window.location.href='Deng.jsp';</script>");
         }
-        if(!(name.equals("you")||name.equals("robot1")||name.equals("robot2"))){
+        if(n.getUsername().equals("0")){
             response.getWriter().write("<script>alert('登录失败！');window.location.href='Deng.jsp';</script>");
         }
         else{
