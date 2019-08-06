@@ -68,16 +68,4 @@ public class Message {
         this.writer = writer;
     }
 
-    @Override
-    public String toString() {
-        return "Message{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", content='" + content + '\'' +
-                ", createTime='" + createTime + '\'' +
-                ", editTime='" + editTime + '\'' +
-                ", userId=" + userId +
-                ", writer='" + writer + '\'' +
-                '}';
-    }
 }

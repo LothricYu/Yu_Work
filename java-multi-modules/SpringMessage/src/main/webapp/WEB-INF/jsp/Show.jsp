@@ -21,7 +21,7 @@
 <%=session1.getAttribute("user_name")
 %>
 <a href="/logout">退出登录</a>
-<a href="/newmessage">新建留言</a>
+<a href="/addmessage">新建留言</a>
 <a href="/useredit">编辑用户信息</a>
 
 <form action="/querymessagebyusername">

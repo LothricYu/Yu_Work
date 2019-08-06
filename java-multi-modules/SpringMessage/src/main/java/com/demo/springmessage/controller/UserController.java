@@ -20,11 +20,6 @@ public class UserController {
         return "LoginPage";
     }
 
-    @RequestMapping("/useredit")
-    public String tousereditPage(){
-        return "UpdateUser";
-    }
-
     @RequestMapping("/logout")
     public String logout(HttpServletRequest request){
         request.getSession().invalidate();
@@ -45,6 +40,11 @@ public class UserController {
             return "redirect:/Show?page=1";
         }
         return "LoginPage";
+    }
+
+    @RequestMapping("/useredit")
+    public String tousereditPage(){
+        return "UpdateUser";
     }
 
     @RequestMapping("/user_updata")

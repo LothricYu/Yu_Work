@@ -15,11 +15,6 @@ public class MessageController {
     @Autowired
     MessageService messageService;
 
-    @RequestMapping("/newmessage")
-    public String tonewmessagePage(){
-        return "AddMessage";
-    }
-
     @RequestMapping("/Show")
     public String queryAllMessage(HttpServletRequest request){
         int page = Integer.parseInt(request.getParameter("page"));
@@ -42,6 +37,26 @@ public class MessageController {
         return "Show";
     }
 
+    @RequestMapping("/addmessage")
+    public String tonewmessagePage(){
+        return "AddMessage";
+    }
+
+    @RequestMapping("/message_new")
+    public String insertMessage(HttpServletRequest request){
+        User user = (User) request.getSession().getAttribute("user");
+        String title = request.getParameter("title");
+        String content = request.getParameter("content");
+        Message message = new Message();
+        message.setTitle(title);
+        message.setContent(content);
+        message.setUserId(user.getId());
+        if (messageService.insertMessage(message)){
+            return "redirect:/Show?page=1";
+        }
+        return null;
+    }
+
     @RequestMapping("/message_edit")
     public String editMessageById(HttpServletRequest request){
         int messageId = Integer.parseInt(request.getParameter("editid"));
@@ -56,7 +71,6 @@ public class MessageController {
         String title = request.getParameter("title");
         String content = request.getParameter("content");
         if (messageService.updateMessage(id,title,content)){
-            request.setAttribute("msg","修改成功!");
             return "redirect:/Show?page=1";
         }
         System.out.println("fail");
@@ -67,25 +81,9 @@ public class MessageController {
     public String deleteMessageById(HttpServletRequest request){
         int messageId = Integer.parseInt(request.getParameter("deleteid"));
         if (messageService.deleteMessage(messageId)){
-            request.setAttribute("msg","删除成功!");
             return "redirect:/Show?page=1";
         }
         return "null";
     }
 
-    @RequestMapping("/message_new")
-    public String insertMessage(HttpServletRequest request){
-        User user = (User) request.getSession().getAttribute("user");
-        String title = request.getParameter("title");
-        String content = request.getParameter("content");
-        Message message = new Message();
-        message.setTitle(title);
-        message.setContent(content);
-        message.setUserId(user.getId());
-        if (messageService.insertMessage(message)){
-            request.setAttribute("msg","留言成功!");
-            return "redirect:/Show?page=1";
-        }
-        return null;
-    }
 }
