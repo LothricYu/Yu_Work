@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @Controller
 public class UserController {
@@ -27,19 +29,28 @@ public class UserController {
     }
 
     @RequestMapping("/checklogin")
-    public String checkLogin(HttpServletRequest request, Model model){
+    public String checkLogin(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        request.setAttribute("username",username);
+        request.setAttribute("username", username);
 
-        User user = null;
-        user = userService.findByUsername(username);
-        if(user.getPassword().equals(password)){
-            request.getSession().setAttribute("user",user);
-            request.getSession().setAttribute("user_name",username);
-            return "redirect:/Show?page=1";
+        if (username.equals("")) {
+            return "Kong";
+        } else {
+            User user;
+            if(userService.findByUsername(username)==null){
+                return "Error";
+            }
+            else {
+                user = userService.findByUsername(username);
+                if (user.getPassword().equals(password)) {
+                    request.getSession().setAttribute("user", user);
+                    request.getSession().setAttribute("user_name", username);
+                    return "redirect:/Show?page=1";
+                }
+                return "Error";
+            }
         }
-        return "LoginPage";
     }
 
     @RequestMapping("/useredit")
