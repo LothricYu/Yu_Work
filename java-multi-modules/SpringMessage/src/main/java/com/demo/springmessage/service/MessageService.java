@@ -1,7 +1,7 @@
 package com.demo.springmessage.service;
 
 import com.demo.springmessage.dao.MessageDao;
-import com.demo.springmessage.entity.Message;
+import com.demo.springmessage.pojo.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

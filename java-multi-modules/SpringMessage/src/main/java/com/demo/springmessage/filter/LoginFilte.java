@@ -1,6 +1,6 @@
 package com.demo.springmessage.filter;
 
-import com.demo.springmessage.entity.User;
+import com.demo.springmessage.pojo.User;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;

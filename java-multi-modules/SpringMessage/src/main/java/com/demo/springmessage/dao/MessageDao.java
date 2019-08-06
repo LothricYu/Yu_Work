@@ -1,6 +1,6 @@
 package com.demo.springmessage.dao;
 
-import com.demo.springmessage.entity.Message;
+import com.demo.springmessage.pojo.Message;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 

@@ -1,7 +1,7 @@
 package com.demo.springmessage.service;
 
 import com.demo.springmessage.dao.UserDao;
-import com.demo.springmessage.entity.User;
+import com.demo.springmessage.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

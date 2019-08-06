@@ -1,5 +1,5 @@
 <%@ page import="java.util.List" %>
-<%@ page import="com.demo.springmessage.entity.User" %><%--
+<%@ page import="com.demo.springmessage.pojo.User" %><%--
   Created by IntelliJ IDEA.
   User: Soung
   Date: 2019/7/30

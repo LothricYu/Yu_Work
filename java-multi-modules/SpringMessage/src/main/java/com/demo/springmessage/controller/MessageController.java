@@ -1,7 +1,7 @@
 package com.demo.springmessage.controller;
 
-import com.demo.springmessage.entity.Message;
-import com.demo.springmessage.entity.User;
+import com.demo.springmessage.pojo.Message;
+import com.demo.springmessage.pojo.User;
 import com.demo.springmessage.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
