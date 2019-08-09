@@ -18,7 +18,7 @@ public class SpringmessageApplication {
     public FilterRegistrationBean registFilter() {
         FilterRegistrationBean registration = new FilterRegistrationBean();
         registration.setFilter(new LoginFilte());
-        registration.addUrlPatterns("/Show","/AddMessage","/querymessagebyusername","/addmessage","/message_new","/message_edit","/message_updata","/message_delete","/useredit","/user_updata");
+        registration.addUrlPatterns("/showalluser","/Show","/AddMessage","/querymessagebyusername","/addmessage","/message_new","/message_edit","/message_updata","/message_delete","/useredit","/user_updata","/vis_per","/role_permission","/user_role","/user_roleup","/alluseredit","/no","/vis","/ad","/normal_per","/ad_per");
         registration.setName("TestFilter");
         return registration;
     }

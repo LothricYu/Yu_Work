@@ -4,12 +4,11 @@ import com.demo.springmessage.pojo.Permission;
 import com.demo.springmessage.pojo.User;
 
 import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = "/useredit")
+
 public class editpersonfilter implements Filter {
     public void init(FilterConfig filterConfig) throws ServletException {
     }

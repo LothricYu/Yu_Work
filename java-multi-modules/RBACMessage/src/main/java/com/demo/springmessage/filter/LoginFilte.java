@@ -3,13 +3,12 @@ package com.demo.springmessage.filter;
 import com.demo.springmessage.pojo.User;
 
 import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = {"/Show","/AddMessage","/querymessagebyusername","/addmessage","/message_new","/message_edit","/message_updata","/message_delete","/useredit","/user_updata"})
+
 public class LoginFilte implements Filter {
 
     public void init(FilterConfig filterConfig) throws ServletException {

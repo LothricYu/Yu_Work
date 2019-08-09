@@ -11,8 +11,8 @@
 <%
     HttpSession session1=request.getSession();
     String name= (String) session1.getAttribute("user_name");
-    Permission permission = (Permission) session1.getAttribute("permission");
-    int p=permission.getUpdate_user_all();
+    Permission permission1 = (Permission) session1.getAttribute("permission");
+//    int p=permission1.getUpdate_user_all();
     if (!name.equals("admin"))
     {
         response.getWriter().write("<script>alert('没有权限！');window.location.href='/Show?page=1';</script>");
