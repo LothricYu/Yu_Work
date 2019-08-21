@@ -124,12 +124,10 @@ public class UserController {
                 System.out.println("打赏成功");
                 user.setBalance(b-num);
                 billService.insertBill("消费",num,userid);
-                request.getSession().setAttribute("user",user);
         } catch (Exception e) {
             e.printStackTrace();
             Out out=new Out();
             out.dashang_print_fe(response);
-            request.getSession().setAttribute("user",user);
             System.out.println("打赏失败");
             return null;
         }
