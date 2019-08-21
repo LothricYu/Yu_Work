@@ -34,5 +34,10 @@ public class Out {
         response.getWriter().write("<script charset='utf-8' language='javascript' type='text/javascript' >alert('不可打赏自己');window.location.href='Show?page=1';</script>");
     }
 
+    public void dashang_print_fe_less(ServletResponse response) throws IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write("<script charset='utf-8' language='javascript' type='text/javascript' >alert('余额不足');window.location.href='Show?page=1';</script>");
+    }
 
 }

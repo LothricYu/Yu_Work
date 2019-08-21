@@ -52,6 +52,7 @@ public class UserService {
         return  userDao.updateUserBalance(number,id) >0? true:false;
     }
 
+    @MyLog(value = "打赏")
     @Transactional
     public boolean reward(int userId,Double moneyNum,int messageUserId){//打赏者id，打赏金额，被打赏者id
         int result1 = userDao.reduceUserBalance(moneyNum,userId);

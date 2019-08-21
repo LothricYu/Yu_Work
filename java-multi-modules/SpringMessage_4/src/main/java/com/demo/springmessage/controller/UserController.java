@@ -113,8 +113,8 @@ public class UserController {
         }
         else if(num>b){
             Out out=new Out();
-            out.dashang_print_fe(response);
-            System.out.println("打赏金额超过余额");
+            out.dashang_print_fe_less(response);
+            System.out.println("余额不足");
             return null;
         }
         else if(userService.reward(userid,num,rewardid)){
