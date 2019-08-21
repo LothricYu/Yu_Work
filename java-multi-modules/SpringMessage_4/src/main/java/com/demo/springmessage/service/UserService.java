@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -54,7 +55,7 @@ public class UserService {
 
     @MyLog(value = "打赏")
     @Transactional
-    public boolean reward(int userId,Double moneyNum,int messageUserId){//打赏者id，打赏金额，被打赏者id
+    public boolean reward(int userId,Double moneyNum,int messageUserId) throws IOException {//打赏者id，打赏金额，被打赏者id
         int result1 = userDao.reduceUserBalance(moneyNum,userId);
         int result2 = userDao.addUserBalance(moneyNum,messageUserId);
         if (result1 * result2 == 1){
@@ -62,6 +63,9 @@ public class UserService {
             if (temp % 2 == 0){
                 System.out.println("成功");
                 return true;
+            }
+            else{
+                throw new RuntimeException("异常");
             }
         }
         return false;
